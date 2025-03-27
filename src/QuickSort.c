@@ -1,80 +1,69 @@
-// Quick sort in C
-
 #include <stdio.h>
+#include <stdlib.h>  // For malloc() and dynamic memory allocation
 
-// function to swap elements
+// Function to swap elements
 void swap(int *a, int *b) {
-  int t = *a;
-  *a = *b;
-  *b = t;
+    int t = *a;
+    *a = *b;
+    *b = t;
 }
 
-// function to find the partition position
+// Function to find the partition position
 int partition(int array[], int low, int high) {
-  
-  // select the rightmost element as pivot
-  int pivot = array[high];
-  
-  // pointer for greater element
-  int i = (low - 1);
+    int pivot = array[high];  // Select the rightmost element as pivot
+    int i = (low - 1);        // Pointer for the greater element
 
-  // traverse each element of the array
-  // compare them with the pivot
-  for (int j = low; j < high; j++) {
-    if (array[j] <= pivot) {
-        
-      // if element smaller than pivot is found
-      // swap it with the greater element pointed by i
-      i++;
-      
-      // swap element at i with element at j
-      swap(&array[i], &array[j]);
+    for (int j = low; j < high; j++) {
+        if (array[j] <= pivot) {
+            i++;
+            swap(&array[i], &array[j]);  // Swap if element smaller than pivot is found
+        }
     }
-  }
-
-  // swap the pivot element with the greater element at i
-  swap(&array[i + 1], &array[high]);
-  
-  // return the partition point
-  return (i + 1);
+    swap(&array[i + 1], &array[high]);  // Swap pivot element with the greater element at i
+    return (i + 1);  // Return the partition point
 }
 
 void quickSort(int array[], int low, int high) {
-  if (low < high) {
-    
-    // find the pivot element such that
-    // elements smaller than pivot are on left of pivot
-    // elements greater than pivot are on right of pivot
-    int pi = partition(array, low, high);
-    
-    // recursive call on the left of pivot
-    quickSort(array, low, pi - 1);
-    
-    // recursive call on the right of pivot
-    quickSort(array, pi + 1, high);
-  }
+    if (low < high) {
+        int pi = partition(array, low, high);  // Find the pivot element
+        quickSort(array, low, pi - 1);         // Recursively sort left of pivot
+        quickSort(array, pi + 1, high);        // Recursively sort right of pivot
+    }
 }
 
-// function to print array elements
+// Function to print array elements
 void printArray(int array[], int size) {
-  for (int i = 0; i < size; ++i) {
-    printf("%d  ", array[i]);
-  }
-  printf("\n");
+    for (int i = 0; i < size; ++i) {
+        printf("%d  ", array[i]);
+    }
+    printf("\n");
 }
 
-// main function
+// Main function: Load data from "data.txt" and sort it
 int main() {
-  int data[] = {8, 7, 2, 1, 0, 9, 6};
-  
-  int n = sizeof(data) / sizeof(data[0]);
-  
-  printf("Unsorted Array\n");
-  printArray(data, n);
-  
-  // perform quicksort on data
-  quickSort(data, 0, n - 1);
-  
-  printf("Sorted array in ascending order: \n");
-  printArray(data, n);
+    FILE *file = fopen("data.txt", "r");
+    if (file == NULL) {
+        printf("Error: Could not open file 'data.txt'.\n");
+        return 1;
+    }
+
+    int arr[1000];  // Array to store numbers from the file (up to 1000 integers)
+    int size = 0;
+
+    // Read integers from the file
+    while (fscanf(file, "%d", &arr[size]) != EOF) {
+        size++;
+    }
+    fclose(file);
+
+    //printf("Unsorted Array:\n");
+    //printArray(arr, size);
+
+    quickSort(arr, 0, size - 1);
+
+    //printf("Sorted Array in Ascending Order:\n");
+    //printArray(arr, size);
+
+    return 0;
 }
+

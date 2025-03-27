@@ -1,0 +1,5 @@
+system("gcc src/MergeSort.c -o MergeSort")
+system("gcc src/QuickSort.c -o QuickSort")
+system("gcc src/BubbleSort.c -o BubbleSort")
+system("gcc src/SelectionSort.c -o SelectionSort")
+system("gcc src/InsertionSort.c -o InsertionSort")
