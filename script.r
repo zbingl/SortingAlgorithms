@@ -1,0 +1,16 @@
+for (i in 1:5) {
+    # system("java -Xint Lab data1.txt res.csv 600")
+    system("java LabInbyggdAlgo data1.txt resInbyggdAlgo.csv 600")
+    df <- read.csv("res.csv", header = T)
+    jmv <- mean(tail(df[[2]], 100))
+    # print(jmv)
+    means <- append(means, jmv)
+    dfI <- read.csv("resInbyggdAlgo.csv", header = T)
+    jmvI <- mean(tail(dfI[[2]], 100))
+    # print(jmv)
+    meansInbyggdAlgo <- append(meansI, jmvI)
+}
+# print(means)
+meanOfMeans <- mean(means)
+confidenceInterval(means, confidenceLevel=0.95)
+t.test(means, meansInbyggdAlgo)
