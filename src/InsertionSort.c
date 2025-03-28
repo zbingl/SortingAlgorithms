@@ -24,10 +24,17 @@ void insertionSort(int array[], int size) {
     }
 }
 
-int main() {
-    FILE *file = fopen("data.txt", "r");
+int main(int argc, char *argv[]) {
+    // Check if the user provided the input file as a command-line argument
+    if (argc != 2) {
+        printf("Usage: %s <inputfile>\n", argv[0]);
+        return 1;
+    }
+
+    // Open the input file passed as an argument
+    FILE *file = fopen(argv[1], "r");
     if (file == NULL) {
-        printf("Error: Could not open file 'data.txt'.\n");
+        printf("Error: Could not open file '%s'.\n", argv[1]);
         return 1;
     }
 
