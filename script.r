@@ -9,11 +9,16 @@ df <- data.frame(Filename = character(),
                  stringsAsFactors = FALSE)
 
 # List of input files (replace with your actual filenames)
-input_files <- c("data3.txt", 
-                 "data7.txt", 
-                 "data20.txt", 
-                 "data50.txt", 
-                 "data400.txt", 
+input_files <- c("data3.txt",
+                 "data5.txt", 
+                 "data7.txt",
+                 "data12.txt", 
+                 "data20.txt",
+                 "data30.txt",
+                 "data50.txt",
+                 "data90.txt", 
+                 "data400.txt",
+                 "data660.txt", 
                  "data1000.txt")  # Add more files as needed
 
 # Loop over each file
