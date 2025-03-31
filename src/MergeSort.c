@@ -3,10 +3,18 @@
 
 // Merge function
 void merge(int arr[], int p, int q, int r) {
+
     int n1 = q - p + 1;
     int n2 = r - q;
 
-    int L[n1], M[n2];
+    int *L = malloc(n1 * sizeof(int));
+    int *M = malloc(n2 * sizeof(int));
+
+    if (L == NULL || M == NULL) {
+        // Handle allocation failure
+        printf("Memory allocation failed\n");
+        exit(1);
+    }
 
     for (int i = 0; i < n1; i++)
         L[i] = arr[p + i];
@@ -37,6 +45,9 @@ void merge(int arr[], int p, int q, int r) {
         j++;
         k++;
     }
+
+    free(L);
+    free(M);
 }
 
 // Recursive merge sort function
@@ -71,7 +82,7 @@ int main(int argc, char *argv[]) {
         return 1;
     }
 
-    int arr[1000];  // Array to store up to 1000 numbers (adjustable)
+    int arr[3000];  // Array to store up to 1000 numbers (adjustable)
     int size = 0;
 
     // Read integers from the file

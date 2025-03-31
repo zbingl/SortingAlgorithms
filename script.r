@@ -19,7 +19,8 @@ input_files <- c("data3.txt",
                  "data90.txt", 
                  "data400.txt",
                  "data660.txt", 
-                 "data1000.txt")  # Add more files as needed
+                 "data1000.txt",
+                 "data3000.txt")  # Add more files as needed
 
 # Loop over each file
 for (file in input_files) {
@@ -35,7 +36,7 @@ for (file in input_files) {
   file_size <- length(readLines(file))  # Count the number of lines in the file
   
   # Loop to run each sorting method 10 times per file
-  for (i in 1:50) {
+  for (i in 1:2) {
     bubble_times <- c(bubble_times, system.time(system(paste("./BubbleSort", file)))["elapsed"])
     merge_times <- c(merge_times, system.time(system(paste("./MergeSort", file)))["elapsed"])
     quick_times <- c(quick_times, system.time(system(paste("./QuickSort", file)))["elapsed"])
