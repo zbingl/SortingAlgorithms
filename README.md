@@ -1,15 +1,13 @@
-![alt text](plot.png "Test plot")
+![alt text](output/plot.png "Test plot")
 
-## Comparison between runtimes for different sorting algorithms. The sorted data consists of integers between 1 and 10000.
+## Jämförelse mellan exekveringstider hos vanliga sorteringsalgoritmer vid olika stora datamängder. Den sorterade datan består av 4-siffriga heltal.
 
 
-Measuring Single core implementeringar av sortings-algoritmer in programskpråket C:
+Bestämma tidskomplexiteten i medelfallet för olika sortingsalgoritmer
 
 cykomatisk komplexitet
 
-tidskomplexitet
-
-körtid i nanosekunder
+körtid i sekunder
 
 verifiera tidskomplexitet med körtiden.
 

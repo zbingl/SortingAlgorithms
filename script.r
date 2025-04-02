@@ -48,15 +48,15 @@ for (i in 1:20) {
 
     # Run each sorting algorithm once per file
     execution_times[[file]]$BubbleSort <- c(execution_times[[file]]$BubbleSort,
-                                            system.time(system(paste("./BubbleSort", file)))["elapsed"])
+                                            system.time(system(paste("bin/BubbleSort", file)))["elapsed"])
     execution_times[[file]]$MergeSort <- c(execution_times[[file]]$MergeSort,
-                                           system.time(system(paste("./MergeSort", file)))["elapsed"])
+                                           system.time(system(paste("bin/MergeSort", file)))["elapsed"])
     execution_times[[file]]$QuickSort <- c(execution_times[[file]]$QuickSort,
-                                           system.time(system(paste("./QuickSort", file)))["elapsed"])
+                                           system.time(system(paste("bin/QuickSort", file)))["elapsed"])
     execution_times[[file]]$SelectionSort <- c(execution_times[[file]]$SelectionSort,
-                                               system.time(system(paste("./SelectionSort", file)))["elapsed"])
+                                               system.time(system(paste("bin/SelectionSort", file)))["elapsed"])
     execution_times[[file]]$InsertionSort <- c(execution_times[[file]]$InsertionSort,
-                                               system.time(system(paste("./InsertionSort", file)))["elapsed"])
+                                               system.time(system(paste("bin/InsertionSort", file)))["elapsed"])
   }
 }
 
@@ -83,11 +83,11 @@ for (file in names(execution_times)) {
 }
 
 # Save results to CSV
-write.csv(df, "res.csv", row.names = FALSE)
+write.csv(df, "output/res.csv", row.names = FALSE)
 print("Mean sorting execution times and file sizes saved to res.csv")
 
 # Generate plot
-png("plot.png", width = 800, height = 600)
+png("output/plot.png", width = 800, height = 600)
 plot(df$FileSize, df$Mean_BubbleSort, type = "b", col = "red",
      xlab = "Number of Lines (File Size)", ylab = "Mean Runtime (seconds)",
      main = "Sorting Algorithm Runtimes vs. File Size (Logarithmic Scale)",
