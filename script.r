@@ -1,90 +1,99 @@
-# Create an empty data frame to store the mean execution times, file size (number of lines), and filenames
+source("rng.r")
+source("ci.r")
+
+# Create an empty data frame to store execution times and file sizes
 df <- data.frame(Filename = character(),
-                 FileSize = numeric(),  # Number of lines in the file
+                 FileSize = numeric(),
                  Mean_BubbleSort = numeric(),
                  Mean_MergeSort = numeric(),
                  Mean_QuickSort = numeric(),
                  Mean_SelectionSort = numeric(),
-                 Mean_InsertionSort = numeric(), List of input files (replace with your actual filenames) List of input fil List of input fil List of input fi List of input fil List of input fi List of input fi List of input fil List of input fi List of input fil List of input fil List of input fil List of input fil List of input fi List of input fi List of input fil List of input fi List of input fil List of input fi List of input fi List of input fi List of input fi List of input fi List of input fi List of input files (replace with your actual filenames)les (replace with your actual filenames)les (replace with your actual filenames)les (replace with your actual filenames)les (replace with your actual filenames)les (replace with your actual filenames)les (replace with your actual filenames)es (replace with your actual filenames)les (replace with your actual filenames)es (replace with your actual filenames)les (replace with your actual filenames)les (replace with your actual filenames)es (replace with your actual filenames)es (replace with your actual filenames)es (replace with your actual filenames)es (replace with your actual filenames)les (replace with your actual filenames)es (replace with your actual filenames)les (replace with your actual filenames)les (replace with your actual filenames)es (replace with your actual filenames)les (replace with your actual filenames)es (replace with your actual filenames)es (replace with your actual filenames)
-                 stringsAsFactors = FALSE) List of input files (re List of input file List of inpu List of input files (replace with your actual filenames) List of input files (replace with your actual filenames) List of input files (replace with your actual filenames) List of input files (replace with your actual filenames) List of input files (replace with your actual filenames)t file List of input file List of input file List of input file List of input file List of input file List of input file List of input file List of input file List of input file List of input file List of input file List of input file List of input file List of input file List of input file List of input file List of input file List of input file List of input file List of input file List of input file List of input file List of input file List of input file List of input file List of input file List of input file List of input file List of input file List of input file List of input file List of input file List of input file List of input file List of input file List of input file List of input file List of input file List of input file List of input file List of input file List of input file List of input file List of input file List of input file List of input file List of input file List of input file List of input file List of input file List of input file List of input file List of input file List of input file List of input file List of input file List of input file List of input file List of input fil List of input fil List of input fil List of input fil List of input fil List of input fil List of input files (replace with your actual filenames)es (replace with your actual filenames)es (replace with your actual filenames)es (replace with your actual filenames)es (replace with your actual filenames)es (replace with your actual filenames)es (replace with your actual filenames)s (replace with your actual filenames)s (replace with your actual filenames)s (replace with your actual filenames)s (replace with your actual filenames)s (replace with your actual filenames)s (replace with your actual filenames)s (replace with your actual filenames)s (replace with your actual filenames)s (replace with your actual filenames)s (replace with your actual filenames)s (replace with your actual filenames)s (replace with your actual filenames)s (replace with your actual filenames)s (replace with your actual filenames)s (replace with your actual filenames)s (replace with your actual filenames)s (replace with your actual filenames)s (replace with your actual filenames)s (replace with your actual filenames)s (replace with your actual filenames)s (replace with your actual filenames)s (replace with your actual filenames)s (replace with your actual filenames)s (replace with your actual filenames)s (replace with your actual filenames)s (replace with your actual filenames)s (replace with your actual filenames)s (replace with your actual filenames)s (replace with your actual filenames)s (replace with your actual filenames)s (replace with your actual filenames)s (replace with your actual filenames)s (replace with your actual filenames)s (replace with your actual filenames)s (replace with your actual filenames)s (replace with your actual filenames)s (replace with your actual filenames)s (replace with your actual filenames)s (replace with your actual filenames)s (replace with your actual filenames)s (replace with your actual filenames)s (replace with your actual filenames)s (replace with your actual filenames)s (replace with your actual filenames)s (replace with your actual filenames)s (replace with your actual filenames)s (replace with your actual filenames)s (replace with your actual filenames)s (replace with your actual filenames)s (replace with your actual filenames)s (replace with your actual filenames)s (replace with your actual filenames)s (replace with your actual filenames)s (replace with your actual filenames)s (replace with your actual filenames)s (replace with your actual filenames)s (replace with your actual filenames)s (replace with your actual filenames)s (replace with your actual filenames)s (replace with your actual filenames)place with your actual filenames)
- List of input files (replace with your actual filenames) List of input files (replace with your   List of input files (replace with your actual filenames) List of input files (replace with your actual filenames) List of input files (replace with your actual filenames) List of input files (replace with your actual filenames) List of input files (replace with your actual filenames) List of input files (replace with your actual filenames) List of input files (replace with your actual filenames) List of input files (replace with your actual filenames)List of input files (replace with your actual filenames) List of input files (replace with your actual filenames) List of input files (replace with your actual filenames) List of input files (replace with your actual filenames) List of input files (replace with your actual filenames)actual filenames)
-# Generate input files with a funciton in a seperate R file. List of input files (replace with    List of input files (replace with your actual filenames)List of input files (replace with your actual filenames) List of input files (replace with your actual filenames) List of input files (replace with your actual filenames) List of input files (replace with your actual filenames) List of input files (replace with your actual filenames) List of input files (replace with your actual filenames)List of input files (replace with your actual filenames) List of input files (replace with your actual filenames) List of input files (replace with your actual filenames)your actual filenames)
-input_files <- c("data3.txt", List of input files (replace with your actual filenames) List of  List of input files (replace with your actual filenames) List of input files (replace with your actual filenames) List of input files (replace with your actual filenames) List of input files (replace with your actual filenames)in  List of input files (replace with your actual filenames)List of input files (replace with your actual filenames)put files (replace with your actual filenames)
-                 "data5.txt", List of input files (replace with your actual filenames) List of   List of input files (replace with your actual filenames)List of input files (replace with your actual filenames)i List of input files (replace with your actual filenames)n List of input files (replace with your actual filenames) List of input files (replace with your actual filenames)put files (replace with your actual filenames)
-                 "data7.txt",
-                 "data12.txt",
-                 "data20.txt",
-                 "data30.txt",
-                 "data50.txt",
-                 "data90.txt",
-                 "data400.txt",
-                 "data660.txt",
-                 "data1000.txt"
-                 #,"data3000.txt"
-                 )  # Add more files as needed
+                 Mean_InsertionSort = numeric(),
+                 stringsAsFactors = FALSE)
 
-# Loop over each file
-for (file in input_files) {
+# Dictionary to store execution times across 20 runs
+execution_times <- list()
 
-  # Create vectors to store the execution times for each sorting algorithm
-  bubble_times <- numeric()
-  merge_times <- numeric()
-  quick_times <- numeric()
-  selection_times <- numeric()
-  insertion_times <- numeric()
+# Repeat the experiment 20 times
+for (i in 1:20) {
 
-  # Measure the number of lines in the file (number of "rows" or data entries)
-  file_size <- length(readLines(file))  # Count the number of lines in the file
+  # Generate new datasets each iteration
+  input_files <- c(generateDatasetFile(3),
+                   generateDatasetFile(5),
+                   generateDatasetFile(7),
+                   generateDatasetFile(12),
+                   generateDatasetFile(20),
+                   generateDatasetFile(30),
+                   generateDatasetFile(50),
+                   generateDatasetFile(90),
+                   generateDatasetFile(400),
+                   generateDatasetFile(660),
+                   generateDatasetFile(1000))
 
-  # Loop to run each sorting method 10 times per file
-  for (i in 1:20) {
+  # Loop over each generated file
+  for (file in input_files) {
 
-    # TODO: Save memory usage in another dataset
+    # Measure the number of lines in the file
+    file_size <- length(readLines(file))
 
-    bubble_times <- c(bubble_times, system.time(system(paste("./BubbleSort", file)))["elapsed"])
-    merge_times <- c(merge_times, system.time(system(paste("./MergeSort", file)))["elapsed"])
-    quick_times <- c(quick_times, system.time(system(paste("./QuickSort", file)))["elapsed"])
-    selection_times <- c(selection_times, system.time(system(paste("./SelectionSort", file)))["elapsed"])
-    insertion_times <- c(insertion_times, system.time(system(paste("./InsertionSort", file)))["elapsed"])
+    # Initialize a key for this file if not already present
+    if (!file %in% names(execution_times)) {
+      execution_times[[file]] <- list(FileSize = file_size,
+                                      BubbleSort = numeric(),
+                                      MergeSort = numeric(),
+                                      QuickSort = numeric(),
+                                      SelectionSort = numeric(),
+                                      InsertionSort = numeric())
+    }
+
+    # Run each sorting algorithm once per file
+    execution_times[[file]]$BubbleSort <- c(execution_times[[file]]$BubbleSort,
+                                            system.time(system(paste("./BubbleSort", file)))["elapsed"])
+    execution_times[[file]]$MergeSort <- c(execution_times[[file]]$MergeSort,
+                                           system.time(system(paste("./MergeSort", file)))["elapsed"])
+    execution_times[[file]]$QuickSort <- c(execution_times[[file]]$QuickSort,
+                                           system.time(system(paste("./QuickSort", file)))["elapsed"])
+    execution_times[[file]]$SelectionSort <- c(execution_times[[file]]$SelectionSort,
+                                               system.time(system(paste("./SelectionSort", file)))["elapsed"])
+    execution_times[[file]]$InsertionSort <- c(execution_times[[file]]$InsertionSort,
+                                               system.time(system(paste("./InsertionSort", file)))["elapsed"])
   }
+}
 
-  # TODO: Add confidence interval HERE
+# Compute the mean execution times over the 20 runs
+for (file in names(execution_times)) {
+  file_data <- execution_times[[file]]
 
-  # Calculate mean runtime for each sorting algorithm
-  mean_bubble <- mean(bubble_times)
-  mean_merge <- mean(merge_times)
-  mean_quick <- mean(quick_times)
-  mean_selection <- mean(selection_times)
-  mean_insertion <- mean(insertion_times)
+    # Compute mean and confidence intervals for each algorithm
+  ci_bubble <- confidenceInterval(file_data$BubbleSort)
+  ci_merge <- confidenceInterval(file_data$MergeSort)
+  ci_quick <- confidenceInterval(file_data$QuickSort)
+  ci_selection <- confidenceInterval(file_data$SelectionSort)
+  ci_insertion <- confidenceInterval(file_data$InsertionSort)
 
-  # Add a new row to the data frame with the file name, file size (number of lines), and mean runtimes
-  new_row <- data.frame(Filename = file,
-                        FileSize = file_size,
-                        Mean_BubbleSort = mean_bubble,
-                        Mean_MergeSort = mean_merge,
-                        Mean_QuickSort = mean_quick,
-                        Mean_SelectionSort = mean_selection,
-                        Mean_InsertionSort = mean_insertion)
+  new_row <- data.frame(
+                        FileSize = file_data$FileSize,
+                        Mean_BubbleSort = mean(file_data$BubbleSort), Lower_BubbleSort = ci_bubble[1], Upper_BubbleSort = ci_bubble[2],
+                        Mean_MergeSort = mean(file_data$MergeSort), Lower_MergeSort = ci_merge[1], Upper_MergeSort = ci_merge[2],
+                        Mean_QuickSort = mean(file_data$QuickSort), Lower_QuickSort = ci_quick[1], Upper_QuickSort = ci_quick[2],
+                        Mean_SelectionSort = mean(file_data$SelectionSort), Lower_SelectionSort = ci_selection[1], Upper_SelectionSort = ci_selection[2],
+                        Mean_InsertionSort = mean(file_data$InsertionSort), Lower_InsertionSort = ci_insertion[1], Upper_InsertionSort = ci_insertion[2])
 
   df <- rbind(df, new_row)
 }
 
-# Save the resulting DataFrame to a CSV file
+# Save results to CSV
 write.csv(df, "res.csv", row.names = FALSE)
+print("Mean sorting execution times and file sizes saved to res.csv")
 
-print("Mean sorting execution times and file sizes (number of lines) have been saved to res.csv")
-#summary(df)
-
-# Open a PNG device to save the plot
-png("plot.png", width = 800, height = 600)  # You can adjust the size (width and height) as needed
-
-# Generate the plot
+# Generate plot
+png("plot.png", width = 800, height = 600)
 plot(df$FileSize, df$Mean_BubbleSort, type = "b", col = "red",
      xlab = "Number of Lines (File Size)", ylab = "Mean Runtime (seconds)",
      main = "Sorting Algorithm Runtimes vs. File Size (Logarithmic Scale)",
      ylim = range(df[, 3:7]), log = "x")
 
-# Add other lines for other sorting algorithms
+# Add other algorithms
 lines(df$FileSize, df$Mean_MergeSort, type = "b", col = "blue")
 lines(df$FileSize, df$Mean_QuickSort, type = "b", col = "green")
 lines(df$FileSize, df$Mean_SelectionSort, type = "b", col = "purple")
@@ -96,7 +105,10 @@ legend("topleft", legend = c("BubbleSort", "MergeSort", "QuickSort",
        col = c("red", "blue", "green", "purple", "orange"),
        lty = 1, pch = 16)
 
-# Close the PNG device (this writes the plot to the file)
 dev.off()
-
 print("Plot saved as plot.png")
+
+for (input_file in input_files) {
+  execution_times[[file]]$BubbleSort
+  confidenceInterval()
+}
