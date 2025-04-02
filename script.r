@@ -5,52 +5,58 @@ df <- data.frame(Filename = character(),
                  Mean_MergeSort = numeric(),
                  Mean_QuickSort = numeric(),
                  Mean_SelectionSort = numeric(),
-                 Mean_InsertionSort = numeric(),
-                 stringsAsFactors = FALSE)
-
-# List of input files (replace with your actual filenames)
-input_files <- c("data3.txt",
-                 "data5.txt", 
+                 Mean_InsertionSort = numeric(), List of input files (replace with your actual filenames) List of input fil List of input fil List of input fi List of input fil List of input fi List of input fi List of input fil List of input fi List of input fil List of input fil List of input fil List of input fil List of input fi List of input fi List of input fil List of input fi List of input fil List of input fi List of input fi List of input fi List of input fi List of input fi List of input fi List of input files (replace with your actual filenames)les (replace with your actual filenames)les (replace with your actual filenames)les (replace with your actual filenames)les (replace with your actual filenames)les (replace with your actual filenames)les (replace with your actual filenames)es (replace with your actual filenames)les (replace with your actual filenames)es (replace with your actual filenames)les (replace with your actual filenames)les (replace with your actual filenames)es (replace with your actual filenames)es (replace with your actual filenames)es (replace with your actual filenames)es (replace with your actual filenames)les (replace with your actual filenames)es (replace with your actual filenames)les (replace with your actual filenames)les (replace with your actual filenames)es (replace with your actual filenames)les (replace with your actual filenames)es (replace with your actual filenames)es (replace with your actual filenames)
+                 stringsAsFactors = FALSE) List of input files (re List of input file List of inpu List of input files (replace with your actual filenames) List of input files (replace with your actual filenames) List of input files (replace with your actual filenames) List of input files (replace with your actual filenames) List of input files (replace with your actual filenames)t file List of input file List of input file List of input file List of input file List of input file List of input file List of input file List of input file List of input file List of input file List of input file List of input file List of input file List of input file List of input file List of input file List of input file List of input file List of input file List of input file List of input file List of input file List of input file List of input file List of input file List of input file List of input file List of input file List of input file List of input file List of input file List of input file List of input file List of input file List of input file List of input file List of input file List of input file List of input file List of input file List of input file List of input file List of input file List of input file List of input file List of input file List of input file List of input file List of input file List of input file List of input file List of input file List of input file List of input file List of input file List of input file List of input file List of input file List of input fil List of input fil List of input fil List of input fil List of input fil List of input fil List of input files (replace with your actual filenames)es (replace with your actual filenames)es (replace with your actual filenames)es (replace with your actual filenames)es (replace with your actual filenames)es (replace with your actual filenames)es (replace with your actual filenames)s (replace with your actual filenames)s (replace with your actual filenames)s (replace with your actual filenames)s (replace with your actual filenames)s (replace with your actual filenames)s (replace with your actual filenames)s (replace with your actual filenames)s (replace with your actual filenames)s (replace with your actual filenames)s (replace with your actual filenames)s (replace with your actual filenames)s (replace with your actual filenames)s (replace with your actual filenames)s (replace with your actual filenames)s (replace with your actual filenames)s (replace with your actual filenames)s (replace with your actual filenames)s (replace with your actual filenames)s (replace with your actual filenames)s (replace with your actual filenames)s (replace with your actual filenames)s (replace with your actual filenames)s (replace with your actual filenames)s (replace with your actual filenames)s (replace with your actual filenames)s (replace with your actual filenames)s (replace with your actual filenames)s (replace with your actual filenames)s (replace with your actual filenames)s (replace with your actual filenames)s (replace with your actual filenames)s (replace with your actual filenames)s (replace with your actual filenames)s (replace with your actual filenames)s (replace with your actual filenames)s (replace with your actual filenames)s (replace with your actual filenames)s (replace with your actual filenames)s (replace with your actual filenames)s (replace with your actual filenames)s (replace with your actual filenames)s (replace with your actual filenames)s (replace with your actual filenames)s (replace with your actual filenames)s (replace with your actual filenames)s (replace with your actual filenames)s (replace with your actual filenames)s (replace with your actual filenames)s (replace with your actual filenames)s (replace with your actual filenames)s (replace with your actual filenames)s (replace with your actual filenames)s (replace with your actual filenames)s (replace with your actual filenames)s (replace with your actual filenames)s (replace with your actual filenames)s (replace with your actual filenames)s (replace with your actual filenames)s (replace with your actual filenames)s (replace with your actual filenames)place with your actual filenames)
+ List of input files (replace with your actual filenames) List of input files (replace with your   List of input files (replace with your actual filenames) List of input files (replace with your actual filenames) List of input files (replace with your actual filenames) List of input files (replace with your actual filenames) List of input files (replace with your actual filenames) List of input files (replace with your actual filenames) List of input files (replace with your actual filenames) List of input files (replace with your actual filenames)List of input files (replace with your actual filenames) List of input files (replace with your actual filenames) List of input files (replace with your actual filenames) List of input files (replace with your actual filenames) List of input files (replace with your actual filenames)actual filenames)
+# Generate input files with a funciton in a seperate R file. List of input files (replace with    List of input files (replace with your actual filenames)List of input files (replace with your actual filenames) List of input files (replace with your actual filenames) List of input files (replace with your actual filenames) List of input files (replace with your actual filenames) List of input files (replace with your actual filenames) List of input files (replace with your actual filenames)List of input files (replace with your actual filenames) List of input files (replace with your actual filenames) List of input files (replace with your actual filenames)your actual filenames)
+input_files <- c("data3.txt", List of input files (replace with your actual filenames) List of  List of input files (replace with your actual filenames) List of input files (replace with your actual filenames) List of input files (replace with your actual filenames) List of input files (replace with your actual filenames)in  List of input files (replace with your actual filenames)List of input files (replace with your actual filenames)put files (replace with your actual filenames)
+                 "data5.txt", List of input files (replace with your actual filenames) List of   List of input files (replace with your actual filenames)List of input files (replace with your actual filenames)i List of input files (replace with your actual filenames)n List of input files (replace with your actual filenames) List of input files (replace with your actual filenames)put files (replace with your actual filenames)
                  "data7.txt",
-                 "data12.txt", 
+                 "data12.txt",
                  "data20.txt",
                  "data30.txt",
                  "data50.txt",
-                 "data90.txt", 
+                 "data90.txt",
                  "data400.txt",
-                 "data660.txt", 
-                 "data1000.txt",
-                 "data3000.txt")  # Add more files as needed
+                 "data660.txt",
+                 "data1000.txt"
+                 #,"data3000.txt"
+                 )  # Add more files as needed
 
 # Loop over each file
 for (file in input_files) {
-  
+
   # Create vectors to store the execution times for each sorting algorithm
   bubble_times <- numeric()
   merge_times <- numeric()
   quick_times <- numeric()
   selection_times <- numeric()
   insertion_times <- numeric()
-  
+
   # Measure the number of lines in the file (number of "rows" or data entries)
   file_size <- length(readLines(file))  # Count the number of lines in the file
-  
+
   # Loop to run each sorting method 10 times per file
-  for (i in 1:2) {
+  for (i in 1:20) {
+
+    # TODO: Save memory usage in another dataset
+
     bubble_times <- c(bubble_times, system.time(system(paste("./BubbleSort", file)))["elapsed"])
     merge_times <- c(merge_times, system.time(system(paste("./MergeSort", file)))["elapsed"])
     quick_times <- c(quick_times, system.time(system(paste("./QuickSort", file)))["elapsed"])
     selection_times <- c(selection_times, system.time(system(paste("./SelectionSort", file)))["elapsed"])
     insertion_times <- c(insertion_times, system.time(system(paste("./InsertionSort", file)))["elapsed"])
   }
-  
+
+  # TODO: Add confidence interval HERE
+
   # Calculate mean runtime for each sorting algorithm
   mean_bubble <- mean(bubble_times)
   mean_merge <- mean(merge_times)
   mean_quick <- mean(quick_times)
   mean_selection <- mean(selection_times)
   mean_insertion <- mean(insertion_times)
-  
+
   # Add a new row to the data frame with the file name, file size (number of lines), and mean runtimes
   new_row <- data.frame(Filename = file,
                         FileSize = file_size,
@@ -59,7 +65,7 @@ for (file in input_files) {
                         Mean_QuickSort = mean_quick,
                         Mean_SelectionSort = mean_selection,
                         Mean_InsertionSort = mean_insertion)
-  
+
   df <- rbind(df, new_row)
 }
 
@@ -73,9 +79,9 @@ print("Mean sorting execution times and file sizes (number of lines) have been s
 png("plot.png", width = 800, height = 600)  # You can adjust the size (width and height) as needed
 
 # Generate the plot
-plot(df$FileSize, df$Mean_BubbleSort, type = "b", col = "red", 
-     xlab = "Number of Lines (File Size)", ylab = "Mean Runtime (seconds)", 
-     main = "Sorting Algorithm Runtimes vs. File Size (Logarithmic Scale)", 
+plot(df$FileSize, df$Mean_BubbleSort, type = "b", col = "red",
+     xlab = "Number of Lines (File Size)", ylab = "Mean Runtime (seconds)",
+     main = "Sorting Algorithm Runtimes vs. File Size (Logarithmic Scale)",
      ylim = range(df[, 3:7]), log = "x")
 
 # Add other lines for other sorting algorithms
@@ -85,9 +91,9 @@ lines(df$FileSize, df$Mean_SelectionSort, type = "b", col = "purple")
 lines(df$FileSize, df$Mean_InsertionSort, type = "b", col = "orange")
 
 # Add legend
-legend("topleft", legend = c("BubbleSort", "MergeSort", "QuickSort", 
+legend("topleft", legend = c("BubbleSort", "MergeSort", "QuickSort",
                              "SelectionSort", "InsertionSort"),
-       col = c("red", "blue", "green", "purple", "orange"), 
+       col = c("red", "blue", "green", "purple", "orange"),
        lty = 1, pch = 16)
 
 # Close the PNG device (this writes the plot to the file)
