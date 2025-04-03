@@ -49,8 +49,7 @@ for (i in 1:20) {
                    generateDatasetFile(535),
                    generateDatasetFile(640),
                    generateDatasetFile(766),
-                   generateDatasetFile(916),
-                   generateDatasetFile(1097),)
+                   generateDatasetFile(916))
 
   # Loop over each generated file
   for (file in input_files) {
