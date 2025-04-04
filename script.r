@@ -16,10 +16,10 @@ execution_times <- list()
 
 # Repeat the experiment 20 times
 for (i in 1:20) {
-
+  
   # Generate new datasets each iteration
   input_files <- c(generateDatasetFile(3),
-  generateDatasetFile(4),
+                   generateDatasetFile(4),
                    generateDatasetFile(5),
                    generateDatasetFile(6),
                    generateDatasetFile(7),
@@ -69,15 +69,19 @@ for (i in 1:20) {
 
     # Run each sorting algorithm once per file
     execution_times[[file]]$BubbleSort <- c(execution_times[[file]]$BubbleSort,
-                                            system.time(system(paste("bin/BubbleSort", file)))["elapsed"])
+        as.numeric(system(paste("bin/BubbleSort", file), intern = TRUE)))
+
     execution_times[[file]]$MergeSort <- c(execution_times[[file]]$MergeSort,
-                                           system.time(system(paste("bin/MergeSort", file)))["elapsed"])
+        as.numeric(system(paste("bin/MergeSort", file), intern = TRUE)))
+
     execution_times[[file]]$QuickSort <- c(execution_times[[file]]$QuickSort,
-                                           system.time(system(paste("bin/QuickSort", file)))["elapsed"])
+        as.numeric(system(paste("bin/QuickSort", file), intern = TRUE)))
+
     execution_times[[file]]$SelectionSort <- c(execution_times[[file]]$SelectionSort,
-                                               system.time(system(paste("bin/SelectionSort", file)))["elapsed"])
+        as.numeric(system(paste("bin/SelectionSort", file), intern = TRUE)))
+
     execution_times[[file]]$InsertionSort <- c(execution_times[[file]]$InsertionSort,
-                                               system.time(system(paste("bin/InsertionSort", file)))["elapsed"])
+        as.numeric(system(paste("bin/InsertionSort", file), intern = TRUE)))
   }
 }
 
@@ -85,7 +89,7 @@ for (i in 1:20) {
 for (file in names(execution_times)) {
   file_data <- execution_times[[file]]
 
-    # Compute mean and confidence intervals for each algorithm
+  # Compute mean and confidence intervals for each algorithm
   ci_bubble <- confidenceInterval(file_data$BubbleSort)
   ci_merge <- confidenceInterval(file_data$MergeSort)
   ci_quick <- confidenceInterval(file_data$QuickSort)
@@ -110,8 +114,8 @@ print("Mean sorting execution times and file sizes saved to res.csv")
 # Generate plot
 png("output/plot.png", width = 800, height = 600)
 plot(df$FileSize, df$Mean_BubbleSort, type = "b", col = "red",
-     xlab = "Number of Lines (File Size)", ylab = "Mean Runtime (seconds)",
-     main = "Sorting Algorithm Runtimes vs. File Size (Logarithmic Scale)",
+     xlab = "Number of Lines (File Size)", ylab = "Mean clockcycles elapsed",
+     main = "Sorting Algorithm nbr. of cycles per run vs. Size of sorted list (Logarithmic Scale)",
      ylim = range(df[, 3:7]), log = "x")
 
 # Add other algorithms
@@ -129,7 +133,3 @@ legend("topleft", legend = c("BubbleSort", "MergeSort", "QuickSort",
 dev.off()
 print("Plot saved as plot.png")
 
-for (input_file in input_files) {
-  execution_times[[file]]$BubbleSort
-  confidenceInterval()
-}

@@ -1,5 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>  // For malloc() and dynamic memory allocation
+#include <time.h>
+
 
 // Function to swap elements
 void swap(int *a, int *b) {
@@ -41,6 +43,9 @@ void printArray(int array[], int size) {
 
 // Main function: Load data from "data.txt" and sort it
 int main(int argc, char *argv[]) {
+    clock_t start, end;
+    int cpu_time_used;
+
     // Check if the user provided the input file as a command-line argument
     if (argc != 2) {
         printf("Usage: %s <inputfile>\n", argv[0]);
@@ -70,6 +75,11 @@ int main(int argc, char *argv[]) {
 
     //printf("Sorted Array in Ascending Order:\n");
     //printArray(arr, size);
+    end = clock();
+    cpu_time_used = ((int) (end - start));
+
+    printf("%d\n", cpu_time_used);
+
 
     return 0;
 }

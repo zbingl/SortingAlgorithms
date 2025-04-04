@@ -1,5 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>  // For atoi() and malloc()
+#include <time.h>
+#include <time.h>
+
+
 
 // Merge function
 void merge(int arr[], int p, int q, int r) {
@@ -69,6 +73,9 @@ void printArray(int arr[], int size) {
 }
 
 int main(int argc, char *argv[]) {
+    clock_t start, end;
+    int cpu_time_used;
+    
     // Check if the user provided the input file as a command-line argument
     if (argc != 2) {
         printf("Usage: %s <inputfile>\n", argv[0]);
@@ -98,6 +105,11 @@ int main(int argc, char *argv[]) {
 
     //printf("Sorted array: \n");
     //printArray(arr, size);
+    end = clock();
+    cpu_time_used = ((int) (end - start));
+
+    printf("%d\n", cpu_time_used);
+
 
     return 0;
 }
