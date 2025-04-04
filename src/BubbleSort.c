@@ -50,12 +50,12 @@ int main(int argc, char *argv[]) {
         printf("Error: Could not open file '%s'.\n", argv[1]);
         return 1;
     }
-    
-    
-    
-    
 
-    int arr[1000];  // Array to store up to 1000 integers from the file
+
+
+
+
+    int arr[4000000];  // Array to store up to 1000 integers from the file
     int size = 0;
 
     // Read integers from the file and store them in the array
@@ -66,6 +66,8 @@ int main(int argc, char *argv[]) {
 
     //printf("Unsorted Array:\n");
     //printArray(arr, size);
+
+    start = clock();
 
     // Sort the array using Bubble Sort
     bubbleSort(arr, size);

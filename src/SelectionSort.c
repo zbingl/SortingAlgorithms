@@ -48,7 +48,7 @@ int main(int argc, char *argv[]) {
         return 1;
     }
 
-    int arr[1000];  // Array to store up to 1000 numbers from the file
+    int arr[4000000];  // Array to store up to 1000 numbers from the file
     int size = 0;
 
     // Read integers from the file
@@ -59,6 +59,8 @@ int main(int argc, char *argv[]) {
 
     //printf("Unsorted Array:\n");
     //printArray(arr, size);
+
+    start = clock();
 
     selectionSort(arr, size);
 

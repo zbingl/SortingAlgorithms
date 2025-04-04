@@ -75,7 +75,7 @@ void printArray(int arr[], int size) {
 int main(int argc, char *argv[]) {
     clock_t start, end;
     int cpu_time_used;
-    
+
     // Check if the user provided the input file as a command-line argument
     if (argc != 2) {
         printf("Usage: %s <inputfile>\n", argv[0]);
@@ -89,7 +89,7 @@ int main(int argc, char *argv[]) {
         return 1;
     }
 
-    int arr[5000];  // Array to store up to 1000 numbers (adjustable)
+    int arr[4000000];  // Array to store up to 1000 numbers (adjustable)
     int size = 0;
 
     // Read integers from the file
@@ -100,6 +100,9 @@ int main(int argc, char *argv[]) {
 
     //printf("Unsorted array: \n");
     //printArray(arr, size);
+
+
+    start = clock();
 
     mergeSort(arr, 0, size - 1);
 

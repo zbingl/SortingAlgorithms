@@ -16,7 +16,7 @@ execution_times <- list()
 
 # Repeat the experiment 20 times
 for (i in 1:20) {
-  
+
   # Generate new datasets each iteration
   input_files <- c(generateDatasetFile(3),
                    generateDatasetFile(4),
@@ -29,8 +29,8 @@ for (i in 1:20) {
                    generateDatasetFile(15),
                    generateDatasetFile(18),
                    generateDatasetFile(21),
-                   generateDatasetFile(35),
                    generateDatasetFile(30),
+                   generateDatasetFile(35),
                    generateDatasetFile(36),
                    generateDatasetFile(43),
                    generateDatasetFile(52),
