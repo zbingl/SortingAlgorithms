@@ -89,7 +89,7 @@ int main(int argc, char *argv[]) {
         return 1;
     }
 
-    int arr[4000000];  // Array to store up to 1000 numbers (adjustable)
+    int arr[1000];  // Array to store up to 1000 numbers (adjustable)
     int size = 0;
 
     // Read integers from the file

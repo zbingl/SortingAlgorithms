@@ -15,7 +15,7 @@ df <- data.frame(Filename = character(),
 execution_times <- list()
 
 # Repeat the experiment 20 times
-for (i in 1:20) {
+for (i in 1:5) {
 
   # Generate new datasets each iteration
   input_files <- c(generateDatasetFile(3),
