@@ -22,11 +22,11 @@ for (i in 1:5) {
                    generateDatasetFile(round(exp(8))),  # e^8
                    generateDatasetFile(round(exp(9))),  # e^9
                    generateDatasetFile(round(exp(10))), # e^10
-                   generateDatasetFile(round(exp(11))), # e^11
-                   generateDatasetFile(round(exp(12))),  # e^12
-                   generateDatasetFile(round(exp(13))),
-                   generateDatasetFile(round(exp(14))),
-                   generateDatasetFile(round(exp(15)))
+                   generateDatasetFile(round(exp(11))), # , # e^11
+                   generateDatasetFile(round(exp(12)))  # e^12
+                   # generateDatasetFile(round(exp(13)))
+                  #  generateDatasetFile(round(exp(14))),
+                  #  generateDatasetFile(round(exp(15)))
 )
 
   # Loop over each generated file
@@ -91,23 +91,58 @@ print("Mean sorting execution times and file sizes saved to Large.csv")
 
 # Generate plot
 png("output/plotLarge.png", width = 800, height = 600)
-plot(df$FileSize, df$Mean_MergeSort, type = "b", col = "red",
+plot(df$FileSize, df$Mean_InsertionSort, type = "b", col = "orange",
      xlab = "Number of Lines (File Size)", ylab = "Mean clockcycles elapsed",
-     main = "Sorting Algorithm nbr. of cycles per run vs. Size of sorted list (Logarithmic Scale)",
-     ylim = range(df[, 3:7]), log = "x")
+     main = "Sorting Algorithm nbr. of cycles per run vs. Size of large sorted list (Logarithmic Scale)",
+     ylim = range(df[, grep("^Mean_", names(df))]),
+     log = "x")
 
 # Add other algorithms
-# lines(df$FileSize, df$Mean_MergeSort, type = "b", col = "blue")
 lines(df$FileSize, df$Mean_QuickSort, type = "b", col = "green")
 lines(df$FileSize, df$Mean_SelectionSort, type = "b", col = "purple")
-lines(df$FileSize, df$Mean_InsertionSort, type = "b", col = "orange")
+lines(df$FileSize, df$Mean_MergeSort, type = "b", col = "blue")
 
-# Add legend
-legend("topleft", legend = c("MergeSort", "QuickSort",
-                             "SelectionSort", "InsertionSort"),
-       col = c("red", "blue", "green", "purple", "orange"),
+legend("topleft", legend = c("InsertionSort", "QuickSort", "SelectionSort", "MergeSort"),
+       col = c("orange", "green", "purple", "blue"),
+       lty = 1, pch = 16)
+
+# Add CI arrows
+arrows(df$FileSize, df$Lower_InsertionSort, df$FileSize, df$Upper_InsertionSort,
+       angle = 90, code = 3, length = 0.05, col = "orange")
+arrows(df$FileSize, df$Lower_QuickSort, df$FileSize, df$Upper_QuickSort,
+       angle = 90, code = 3, length = 0.05, col = "green")
+arrows(df$FileSize, df$Lower_SelectionSort, df$FileSize, df$Upper_SelectionSort,
+       angle = 90, code = 3, length = 0.05, col = "purple")
+arrows(df$FileSize, df$Lower_MergeSort, df$FileSize, df$Upper_MergeSort,
+       angle = 90, code = 3, length = 0.05, col = "blue")
+
+dev.off()
+
+png("output/plotLargeQuickAndMerge.png", width = 800, height = 600)
+plot(df$FileSize, df$Mean_MergeSort, type = "b", col = "orange",
+     xlab = "Number of Lines (File Size)", ylab = "Mean clockcycles elapsed",
+     main = "Quicksort vs merge sort large (Logarithmic Scale)",
+     ylim = range(c(df$Mean_MergeSort, df$Mean_QuickSort)),
+     log = "x")
+
+# Add other algorithms
+lines(df$FileSize, df$Mean_QuickSort, type = "b", col = "green")
+
+arrows(df$FileSize, df$Lower_QuickSort, df$FileSize, df$Upper_QuickSort, angle = 90, code = 3, length = 0.05, col = "green")
+
+arrows(df$FileSize, df$Lower_QuickSort, df$FileSize, df$Upper_QuickSort,
+       angle = 90, code = 3, length = 0.05, col = "green")
+arrows(df$FileSize, df$Lower_MergeSort, df$FileSize, df$Upper_MergeSort,
+       angle = 90, code = 3, length = 0.05, col = "orange")
+
+
+legend("topleft", legend = c("MergeSort", "QuickSort"),
+       col = c("orange", "green"),
        lty = 1, pch = 16)
 
 dev.off()
+
+
+
 print("Plot saved as plotLarge.png")
 

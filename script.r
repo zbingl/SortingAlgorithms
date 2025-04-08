@@ -116,7 +116,7 @@ png("output/plot.png", width = 800, height = 600)
 plot(df$FileSize, df$Mean_BubbleSort, type = "b", col = "red",
      xlab = "Number of Lines (File Size)", ylab = "Mean clockcycles elapsed",
      main = "Sorting Algorithm nbr. of cycles per run vs. Size of sorted list (Logarithmic Scale)",
-     ylim = range(df[, 3:7]), log = "x")
+     ylim = range(df[, grep("^Mean_", names(df))]), log = "x")
 
 # Add other algorithms
 lines(df$FileSize, df$Mean_MergeSort, type = "b", col = "blue")
