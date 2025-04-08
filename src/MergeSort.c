@@ -76,6 +76,9 @@ int main(int argc, char *argv[]) {
     clock_t start, end;
     int cpu_time_used;
 
+    int *arr = NULL;
+    int capacity = 100;  // Start with a small initial array capacity
+
     // Check if the user provided the input file as a command-line argument
     if (argc != 2) {
         printf("Usage: %s <inputfile>\n", argv[0]);
@@ -89,31 +92,54 @@ int main(int argc, char *argv[]) {
         return 1;
     }
 
-    int arr[1000];  // Array to store up to 1000 numbers (adjustable)
+
+
+
+
+    // Allocate initial memory
+    arr = (int *)malloc(capacity * sizeof(int));
+    if (arr == NULL) {
+        perror("malloc failed");
+        return 1;
+    }
     int size = 0;
 
-    // Read integers from the file
+
+    // Read integers from the file, expanding array as needed
     while (fscanf(file, "%d", &arr[size]) != EOF) {
         size++;
+
+        // If size reaches capacity, double the capacity
+        if (size >= capacity) {
+            capacity *= 2;
+            int *temp = realloc(arr, capacity * sizeof(int));
+            if (temp == NULL) {
+                perror("realloc failed");
+                free(arr);
+                return 1;
+            }
+            arr = temp;
+        }
     }
-    fclose(file);
+    fclose(file);  // Close the file
 
-    //printf("Unsorted array: \n");
+    //printf("Unsorted Array:\n");
     //printArray(arr, size);
-
 
     start = clock();
 
     mergeSort(arr, 0, size - 1);
 
-    //printf("Sorted array: \n");
+    //printf("Sorted Array in Ascending Order:\n");
     //printArray(arr, size);
     end = clock();
     cpu_time_used = ((int) (end - start));
 
     printf("%d\n", cpu_time_used);
 
+    free(arr);
 
     return 0;
 }
+
 

@@ -38,6 +38,9 @@ int main(int argc, char *argv[]) {
     clock_t start, end;
     int cpu_time_used;
 
+    int *arr = NULL;
+    int capacity = 100;  // Start with a small initial array capacity
+
     // Check if the user provided the input file as a command-line argument
     if (argc != 2) {
         printf("Usage: %s <inputfile>\n", argv[0]);
@@ -55,12 +58,30 @@ int main(int argc, char *argv[]) {
 
 
 
-    int arr[1000];  // Array to store up to 1000 integers from the file
+    // Allocate initial memory
+    arr = (int *)malloc(capacity * sizeof(int));
+    if (arr == NULL) {
+        perror("malloc failed");
+        return 1;
+    }
     int size = 0;
 
-    // Read integers from the file and store them in the array
+
+    // Read integers from the file, expanding array as needed
     while (fscanf(file, "%d", &arr[size]) != EOF) {
         size++;
+
+        // If size reaches capacity, double the capacity
+        if (size >= capacity) {
+            capacity *= 2;
+            int *temp = realloc(arr, capacity * sizeof(int));
+            if (temp == NULL) {
+                perror("realloc failed");
+                free(arr);
+                return 1;
+            }
+            arr = temp;
+        }
     }
     fclose(file);  // Close the file
 
@@ -79,6 +100,7 @@ int main(int argc, char *argv[]) {
 
     printf("%d\n", cpu_time_used);
 
+    free(arr);
 
     return 0;
 }
